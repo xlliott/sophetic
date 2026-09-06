@@ -7,9 +7,9 @@
 <meta name="description" content="Sophetic is a research lab of 34 people in San Francisco. Zeno 1.0 is 55.1 points behind the frontier. Parody.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:title" content="Sophetic">
-<meta property="og:description" content="A small lab that intends to reach the frontier. Parody.">
-<meta property="og:image" content="https://sophetic.org/assets/og.png">
-<meta property="og:url" content="https://sophetic.org">
+<meta property="og:description" content="34 people in San Francisco. Zeno 1.0 is 55.1 points behind the frontier. We publish every result we measure. Parody.">
+<meta property="og:image" content="https://sophetic.pages.dev/assets/og.png">
+<meta property="og:url" content="https://sophetic.pages.dev">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -360,6 +360,17 @@ footer p b{color:var(--ash);font-weight:400}
   step.addEventListener('click',()=>{ if(gen<MAXGEN){gen++;animate(target(gen));sync();} });
   back.addEventListener('click',()=>{ if(gen>0){gen--;animate(target(gen));sync();} });
   draw(START); sync();
+
+  /* ?run — hands-free walk through every generation, for screen capture.
+     Invisible unless the parameter is present. Any click cancels it. */
+  if(new URLSearchParams(location.search).has('run')){
+    const t=[], cancel=()=>{ t.forEach(clearTimeout); t.length=0; };
+    step.addEventListener('click',cancel);
+    back.addEventListener('click',cancel);
+    for(let g=1;g<=MAXGEN;g++){
+      t.push(setTimeout(()=>{ gen=g; animate(target(g)); sync(); }, 1200+(g-1)*1500));
+    }
+  }
 
   const io=new IntersectionObserver(es=>es.forEach(e=>{
     if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
