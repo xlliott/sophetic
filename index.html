@@ -51,7 +51,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;op
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ══ structural grid: hairline columns, always visible ══ */
-.frame{max-width:1360px;margin:0 auto;padding:0 var(--gut);position:relative}
+.frame{max-width:1360px;width:100%;margin:0 auto;padding:0 var(--gut);position:relative}
+.hero > .frame{align-self:stretch}
 .rules{position:fixed;inset:0;pointer-events:none;z-index:0;display:flex;justify-content:center}
 .rules div{max-width:1360px;width:100%;padding:0 var(--gut);display:grid;grid-template-columns:repeat(6,1fr);height:100%}
 .rules span{border-left:1px solid #101012}
