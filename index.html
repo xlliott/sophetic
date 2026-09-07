@@ -11,9 +11,20 @@
 <meta property="og:image" content="https://sophetic.pages.dev/assets/og.png">
 <meta property="og:url" content="https://sophetic.pages.dev">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-Light.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;
+ src:url("/assets/fonts/InstrumentSerif-Regular.woff2") format("woff2")}
+@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;font-display:swap;
+ src:url("/assets/fonts/InstrumentSerif-Italic.woff2") format("woff2")}
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:300;font-display:swap;
+ src:url("/assets/fonts/SpaceGrotesk-Light.woff2") format("woff2")}
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:400;font-display:swap;
+ src:url("/assets/fonts/SpaceGrotesk-Regular.woff2") format("woff2")}
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500;font-display:swap;
+ src:url("/assets/fonts/SpaceGrotesk-Medium.woff2") format("woff2")}
+</style>
 <style>
 :root{
   --void:#000;
@@ -32,6 +43,7 @@ body{
   font-size:15.5px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 .s{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
+.s,h1,h2,.brand b,.pip b,.bval,.stick blockquote,.cell dd,.fsig b{font-synthesis:none}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--paper);color:var(--void)}
 :focus-visible{outline:2px solid var(--paper);outline-offset:4px}
@@ -122,22 +134,25 @@ h2{font-family:"Instrument Serif",serif;font-weight:400;margin:0;
 .gauge i{position:absolute;left:0;top:0;height:1px;background:var(--dust)}
 .gauge u{position:absolute;left:0;top:-4px;height:9px;background:var(--paper);width:0;
  transition:width 1.15s var(--e)}
-.bval{text-align:right;font-family:"Instrument Serif",serif;font-size:clamp(22px,2.4vw,30px);
+.bval{text-align:right;font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(22px,2.4vw,30px);
  line-height:1;font-variant-numeric:tabular-nums}
 .bval em{display:block;font-family:"Space Grotesk";font-style:normal;font-size:11px;
  color:var(--dust);margin-top:6px;font-weight:300}
+.brow.out{border-top:1px solid var(--dust);margin-top:14px;color:var(--ash)}
+.brow.out .bval{color:var(--ash)}
+.brow.out .gauge u{background:var(--ash)}
 .fine{margin:24px 0 0;color:var(--dust);font-size:12.5px;max-width:76ch}
 
 /* ══ dossier ══ */
 .split{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:var(--gut)}
 .stick{position:sticky;top:120px;align-self:start}
-.stick blockquote{margin:0;font-family:"Instrument Serif",serif;
+.stick blockquote{margin:0;font-family:"Instrument Serif",serif;font-weight:400;
  font-size:clamp(22px,2.8vw,38px);line-height:1.18;letter-spacing:-.008em}
 .stick cite{display:block;font-style:normal;color:var(--ash);font-size:13px;margin-top:20px;max-width:32ch}
 .cells{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--dust);border-left:1px solid var(--hair)}
 .cell{padding:22px 20px 24px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .cell dt{color:var(--dust);font-size:11.5px;margin-bottom:10px}
-.cell dd{margin:0;font-family:"Instrument Serif",serif;font-size:26px;line-height:1.05}
+.cell dd{margin:0;font-family:"Instrument Serif",serif;font-weight:400;font-size:26px;line-height:1.05}
 .cell dd em{display:block;font-family:"Space Grotesk";font-style:normal;font-size:12.5px;
  font-weight:300;color:var(--ash);margin-top:10px;line-height:1.5}
 .notes{margin-top:var(--gut)}
@@ -238,13 +253,14 @@ footer p b{color:var(--ash);font-weight:400}
     <div class="brow"><div class="bwhat">Long-horizon software engineering<em>DeepSWE v1.1</em></div><div class="gauge"><i style="width:73.8%"></i><u data-w="1.4"></u></div><div class="bval">1.4<em>of 73.8</em></div></div>
     <div class="brow"><div class="bwhat">Agentic coding<em>CursorBench 3.2.0</em></div><div class="gauge"><i style="width:73.4%"></i><u data-w="1.9"></u></div><div class="bval">1.9<em>of 73.4</em></div></div>
     <div class="brow"><div class="bwhat">Agentic coding<em>Terminal-Bench 4.0</em></div><div class="gauge"><i style="width:57.9%"></i><u data-w="0"></u></div><div class="bval">0.0<em>of 57.9</em></div></div>
+    <div class="brow"><div class="bwhat">Agentic computer use<em>OSWorld 2.0</em></div><div class="gauge"><i style="width:77.9%"></i><u data-w="0"></u></div><div class="bval">0.0<em>of 77.9</em></div></div>
     <div class="brow"><div class="bwhat">Knowledge work<em>GDPval-AA v2, Elo</em></div><div class="gauge"><i style="width:100%"></i><u data-w="22.2"></u></div><div class="bval">412<em>of 1853</em></div></div>
     <div class="brow"><div class="bwhat">Multidisciplinary reasoning<em>HLE-Verified</em></div><div class="gauge"><i style="width:54.9%"></i><u data-w="0.9"></u></div><div class="bval">0.9<em>of 54.9</em></div></div>
-    <div class="brow"><div class="bwhat">Expert-level reasoning<em>GPQA Diamond</em></div><div class="gauge"><i style="width:95.3%"></i><u data-w="27.1"></u></div><div class="bval">27.1<em>of 95.3</em></div></div>
-    <div class="brow"><div class="bwhat">Agentic computer use<em>OSWorld 2.0</em></div><div class="gauge"><i style="width:77.9%"></i><u data-w="0"></u></div><div class="bval">0.0<em>of 77.9</em></div></div>
+    <div class="brow"><div class="bwhat">Document-grounded work<em>GDP.pdf</em></div><div class="gauge"><i style="width:68.4%"></i><u data-w="0"></u></div><div class="bval">&mdash;<em>of 68.4</em></div></div>
     <div class="brow"><div class="bwhat">Composite<em>AA Intelligence Index v4.2</em></div><div class="gauge"><i style="width:57.0%"></i><u data-w="1.9"></u></div><div class="bval">1.9<em>of 57.0</em></div></div>
+    <div class="brow out"><div class="bwhat">Expert-level reasoning<em>GPQA Diamond &middot; outside index v4.2</em></div><div class="gauge"><i style="width:95.3%"></i><u data-w="27.1"></u></div><div class="bval">27.1<em>of 95.3</em></div></div>
   </div>
-  <p class="fine">Zeno 1.0 completed no tasks on Terminal-Bench 4.0 or OSWorld 2.0. On GPQA Diamond it scored 27.1 against a random-choice baseline of 25. Right-hand figures are the best publicly reported result for each benchmark this month and are not attributed to any single system.</p>
+  <p class="fine">Zeno 1.0 completed no tasks on Terminal-Bench 4.0 or OSWorld 2.0. GDP.pdf entered the index in September and Zeno has not yet been run against it; we will report the figure when we have one. GPQA Diamond was removed from the index in September and we agree with the removal; we continue to publish our result on it, outside the composite, because we publish every result we measure. On GPQA Diamond Zeno 1.0 scored 27.1 against a random-choice baseline of 25. Right-hand figures are the best publicly reported result for each benchmark this month and are not attributed to any single system.</p>
 </div></section>
 
 <!-- ════════ DOSSIER ════════ -->
