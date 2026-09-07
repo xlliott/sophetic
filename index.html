@@ -43,7 +43,7 @@ body{
   font-size:15.5px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip;
 }
 .s{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
-.s,h1,h2,.brand b,.pip b,.bval,.stick blockquote,.cell dd,.fsig b{font-synthesis:none}
+.s,h1,h2,.brand b,.mfig b,.bval,.stick blockquote,.cell dd,.fsig b{font-synthesis:none}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--paper);color:var(--void)}
 :focus-visible{outline:2px solid var(--paper);outline-offset:4px}
@@ -85,36 +85,37 @@ h1 i{font-style:italic;color:var(--ash)}
 
 /* ══ the measure ══ */
 .measure{margin-top:clamp(40px,6vh,72px);border-top:1px solid var(--hair);padding-top:26px}
-.mhead{display:flex;justify-content:space-between;font-size:11.5px;color:var(--ash);margin-bottom:34px}
+.mhead{display:flex;justify-content:space-between;font-size:11.5px;color:var(--ash);margin-bottom:18px}
 .mhead b{color:var(--paper);font-weight:400}
-.track{position:relative;height:118px;margin-bottom:8px;contain:layout}
-.axis{position:absolute;left:0;right:0;top:78px;height:1px;background:var(--dust)}
-.ticks{position:absolute;left:0;right:0;top:70px;height:9px}
-.ticks i{position:absolute;top:0;width:1px;height:9px;background:var(--dust)}
-.ticks i.maj{height:15px;top:-3px;background:#5A5A5E}
-.goal{position:absolute;top:22px;bottom:-2px;right:0;width:2px;background:var(--paper)}
-.goal em{position:absolute;right:0;top:-22px;font-style:normal;font-size:11.5px;white-space:nowrap;color:var(--paper)}
-.fill{position:absolute;top:78px;height:1px;background:var(--paper);opacity:.28;will-change:width,transform}
-.pip{position:absolute;top:44px;left:0;will-change:transform}
-.pip u{display:block;width:2px;height:42px;background:var(--paper);margin:0 auto;text-decoration:none}
-.pip b{position:absolute;bottom:46px;left:50%;transform:translateX(-50%);
- font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(30px,4.2vw,50px);line-height:1;
- font-variant-numeric:tabular-nums;white-space:nowrap}
-.remain{position:absolute;top:88px;font-size:11.5px;color:var(--ash);white-space:nowrap;transform:translateX(-50%);will-change:transform}
+.mfig{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.mfig b{font-family:"Instrument Serif",serif;font-weight:400;
+ font-size:clamp(44px,7vw,88px);line-height:.9;font-variant-numeric:tabular-nums;
+ display:inline-block;min-width:3.2ch}
+.mfig span{font-size:12.5px;color:var(--ash);font-variant-numeric:tabular-nums}
+.bar{position:relative;height:34px;overflow:hidden;contain:strict;width:100%;container-type:inline-size}
+.bar i{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--dust)}
+.bar u{position:absolute;left:0;bottom:0;height:1px;background:var(--paper);width:0;
+ text-decoration:none;transition:width .76s var(--e)}
+.bar s{position:absolute;bottom:0;width:2px;height:26px;background:var(--paper);
+ text-decoration:none;left:0;transition:transform .76s var(--e)}
+.bar em{position:absolute;right:0;bottom:0;width:2px;height:34px;background:var(--paper);opacity:.55}
+.mfoot{display:flex;justify-content:space-between;font-size:11.5px;color:var(--dust);
+ padding-top:8px;margin-bottom:26px;font-variant-numeric:tabular-nums}
 
-.controls{display:flex;align-items:stretch;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.controls{display:flex;align-items:stretch;flex-wrap:wrap;
+ border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .controls button{font:inherit;font-size:13px;color:var(--paper);background:none;border:0;
- border-right:1px solid var(--hair);padding:17px 26px;cursor:pointer;position:relative;
- transition:color .3s var(--e)}
+ border-right:1px solid var(--hair);padding:17px 24px;cursor:pointer;position:relative;
+ white-space:nowrap;transition:color .3s var(--e)}
 .controls button::before{content:"";position:absolute;inset:0;background:var(--paper);
  transform:scaleY(0);transform-origin:bottom;transition:transform .42s var(--e);z-index:-1}
 .controls button:hover:not(:disabled)::before{transform:scaleY(1)}
 .controls button:hover:not(:disabled){color:var(--void)}
 .controls button:disabled{color:var(--dust);cursor:default}
 .controls button span{position:relative;z-index:1}
-.controls p{margin:0;display:flex;align-items:center;padding:0 26px;color:var(--ash);font-size:12.5px;flex:1;min-width:0;min-height:54px}
-#step{min-width:15.5em}
-#back{min-width:6.5em}
+.controls p{margin:0;display:flex;align-items:center;padding:14px 24px;color:var(--ash);
+ font-size:12.5px;flex:1 1 260px;min-width:0;min-height:54px}
+#step{min-width:15.5em;text-align:left}
 
 /* ══ generic section ══ */
 section{position:relative;z-index:1;border-top:1px solid var(--hair)}
@@ -189,11 +190,13 @@ footer p b{color:var(--ash);font-weight:400}
   .brow{grid-template-columns:minmax(0,1fr) 96px;gap:16px}
   .gauge{display:none}
   .hnote{display:none}
-  .controls{flex-direction:column;align-items:stretch}
-  .controls button{border-right:0;border-bottom:1px solid var(--hair);text-align:left}
-  #step,#back{min-width:0}
-  .controls p{padding:16px 0}
-  .track{height:104px}
+  .controls{flex-wrap:wrap;align-items:stretch}
+  .controls button{flex:0 0 auto;min-width:0;padding:15px 14px;text-align:left;
+   font-size:12.5px;border-bottom:1px solid var(--hair);white-space:nowrap}
+  .controls button:last-of-type{border-right:0}
+  #back,#reset{min-width:0}
+  #step{flex:1 1 auto;min-width:0}
+  .controls p{padding:16px 0;flex:1 1 100%;min-height:0}
 }
 @media(prefers-reduced-motion:reduce){
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -229,17 +232,24 @@ footer p b{color:var(--ash);font-weight:400}
       <span>Zeno <b id="genlabel">1.0</b></span>
       <span>The Dichotomy Method</span>
     </div>
-    <div class="track" id="track">
-      <div class="ticks" id="ticks"></div>
-      <div class="axis"></div>
-      <div class="fill" id="fill"></div>
-      <div class="goal"><em>57.0 &nbsp;frontier</em></div>
-      <div class="pip" id="pip"><b class="s" id="score">1.9</b><u></u></div>
-      <div class="remain" id="remain">55.1 remaining</div>
+
+    <div class="mfig">
+      <b class="s" id="score">1.9</b>
+      <span id="remain">55.1 remaining</span>
     </div>
+
+    <div class="bar">
+      <i></i>
+      <u id="fill"></u>
+      <s id="pip"></s>
+      <em></em>
+    </div>
+    <div class="mfoot"><span>0</span><span id="goallab">57.0 frontier</span></div>
+
     <div class="controls">
       <button id="step"><span>Close half the distance</span></button>
       <button id="back" disabled><span>Back</span></button>
+      <button id="reset" disabled><span>Reset</span></button>
       <p id="cap">Each generation of Zeno closes half of what is left. This is the founding thesis of the company.</p>
     </div>
   </div>
@@ -318,18 +328,11 @@ footer p b{color:var(--ash);font-weight:400}
 
 <script>
 (function(){
-  const START=1.9, GOAL=57.0, L=1.5, R=97.6, MAXGEN=8;
+  const START=1.9, GOAL=57.0, MAXGEN=8;
   const $=id=>document.getElementById(id);
   const pip=$('pip'), fill=$('fill'), score=$('score'), remain=$('remain'),
         cap=$('cap'), hdist=$('hdist'), step=$('step'), back=$('back'),
-        genlabel=$('genlabel'), ticks=$('ticks');
-
-  for(let i=0;i<=20;i++){
-    const t=document.createElement('i');
-    t.style.left=(L+(R-L)*i/20)+'%';
-    if(i%5===0) t.className='maj';
-    ticks.appendChild(t);
-  }
+        reset=$('reset'), genlabel=$('genlabel');
 
   const CAPS=[
     'Each generation of Zeno closes half of what is left. This is the founding thesis of the company.',
@@ -346,15 +349,11 @@ footer p b{color:var(--ash);font-weight:400}
 
   let gen=0, cur=START, raf=null;
   const ease=t=>1-Math.pow(1-t,3);
-  const pos=v=>L+(R-L)*(v/GOAL);
 
   function draw(v){
-    const p=pos(v), gap=GOAL-v;
-    pip.style.transform=`translateX(${p}%)`;
-    pip.style.left='0';
-    fill.style.left=p+'%'; fill.style.width=(R-p)+'%';
-    remain.style.left=((p+R)/2)+'%';
-    const d=gap<1?2:1;
+    const pct=Math.max(0,Math.min(100,(v/GOAL)*100)), gap=GOAL-v, d=gap<1?2:1;
+    fill.style.width=pct+'%';
+    pip.style.transform='translateX('+pct+'cqw)';
     score.textContent=v.toFixed(1);
     remain.textContent=gap.toFixed(d)+' remaining';
     hdist.textContent=gap.toFixed(d);
@@ -373,21 +372,22 @@ footer p b{color:var(--ash);font-weight:400}
   function sync(){
     genlabel.textContent=NAMES[Math.min(gen,MAXGEN)];
     cap.textContent=CAPS[Math.min(gen,CAPS.length-1)];
-    step.disabled=gen>=MAXGEN; back.disabled=gen===0;
+    step.disabled=gen>=MAXGEN; back.disabled=gen===0; reset.disabled=gen===0;
     step.querySelector('span').textContent = gen>=MAXGEN ? 'It does not close' : 'Close half the distance';
   }
-  step.addEventListener('click',()=>{ if(gen<MAXGEN){gen++;animate(target(gen));sync();} });
-  back.addEventListener('click',()=>{ if(gen>0){gen--;animate(target(gen));sync();} });
+  function go(g){ gen=g; animate(target(g)); sync(); }
+  step.addEventListener('click',()=>{ if(gen<MAXGEN) go(gen+1); });
+  back.addEventListener('click',()=>{ if(gen>0) go(gen-1); });
+  reset.addEventListener('click',()=>{ if(gen>0) go(0); });
   draw(START); sync();
 
   /* ?run — hands-free walk through every generation, for screen capture.
      Invisible unless the parameter is present. Any click cancels it. */
   if(new URLSearchParams(location.search).has('run')){
     const t=[], cancel=()=>{ t.forEach(clearTimeout); t.length=0; };
-    step.addEventListener('click',cancel);
-    back.addEventListener('click',cancel);
+    [step,back,reset].forEach(b=>b.addEventListener('click',cancel));
     for(let g=1;g<=MAXGEN;g++){
-      t.push(setTimeout(()=>{ gen=g; animate(target(g)); sync(); }, 1200+(g-1)*1500));
+      t.push(setTimeout(()=>go(g), 1200+(g-1)*1500));
     }
   }
 
