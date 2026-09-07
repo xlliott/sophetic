@@ -36,7 +36,7 @@
   --gut:clamp(18px,3.4vw,44px);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scrollbar-gutter:stable}
 body{
   margin:0;background:var(--void);color:var(--paper);
   font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;font-weight:300;
@@ -112,7 +112,9 @@ h1 i{font-style:italic;color:var(--ash)}
 .controls button:hover:not(:disabled){color:var(--void)}
 .controls button:disabled{color:var(--dust);cursor:default}
 .controls button span{position:relative;z-index:1}
-.controls p{margin:0;display:flex;align-items:center;padding:0 26px;color:var(--ash);font-size:12.5px;flex:1;min-height:54px}
+.controls p{margin:0;display:flex;align-items:center;padding:0 26px;color:var(--ash);font-size:12.5px;flex:1;min-width:0;min-height:54px}
+#step{min-width:15.5em}
+#back{min-width:6.5em}
 
 /* ══ generic section ══ */
 section{position:relative;z-index:1;border-top:1px solid var(--hair)}
@@ -189,6 +191,7 @@ footer p b{color:var(--ash);font-weight:400}
   .hnote{display:none}
   .controls{flex-direction:column;align-items:stretch}
   .controls button{border-right:0;border-bottom:1px solid var(--hair);text-align:left}
+  #step,#back{min-width:0}
   .controls p{padding:16px 0}
   .track{height:104px}
 }
@@ -256,7 +259,7 @@ footer p b{color:var(--ash);font-weight:400}
     <div class="brow"><div class="bwhat">Agentic computer use<em>OSWorld 2.0</em></div><div class="gauge"><i style="width:77.9%"></i><u data-w="0"></u></div><div class="bval">0.0<em>of 77.9</em></div></div>
     <div class="brow"><div class="bwhat">Knowledge work<em>GDPval-AA v2, Elo</em></div><div class="gauge"><i style="width:100%"></i><u data-w="22.2"></u></div><div class="bval">412<em>of 1853</em></div></div>
     <div class="brow"><div class="bwhat">Multidisciplinary reasoning<em>HLE-Verified</em></div><div class="gauge"><i style="width:54.9%"></i><u data-w="0.9"></u></div><div class="bval">0.9<em>of 54.9</em></div></div>
-    <div class="brow"><div class="bwhat">Document-grounded work<em>GDP.pdf</em></div><div class="gauge"><i style="width:68.4%"></i><u data-w="0"></u></div><div class="bval">&mdash;<em>of 68.4</em></div></div>
+    <div class="brow"><div class="bwhat">Document-grounded work<em>GDP.pdf &middot; All-pass</em></div><div class="gauge"><i style="width:33.2%"></i><u data-w="0"></u></div><div class="bval">&mdash;<em>of 33.2</em></div></div>
     <div class="brow"><div class="bwhat">Composite<em>AA Intelligence Index v4.2</em></div><div class="gauge"><i style="width:57.0%"></i><u data-w="1.9"></u></div><div class="bval">1.9<em>of 57.0</em></div></div>
     <div class="brow out"><div class="bwhat">Expert-level reasoning<em>GPQA Diamond &middot; outside index v4.2</em></div><div class="gauge"><i style="width:95.3%"></i><u data-w="27.1"></u></div><div class="bval">27.1<em>of 95.3</em></div></div>
   </div>
