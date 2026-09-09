@@ -83,6 +83,10 @@ h1{font-family:"Instrument Serif",serif;font-weight:400;margin:0;
  font-size:clamp(42px,8.2vw,124px);line-height:.92;letter-spacing:-.022em;max-width:13ch}
 h1 i{font-style:italic;color:var(--ash)}
 .hlede{max-width:44ch;color:var(--ash);margin:26px 0 0;font-size:clamp(14.5px,1.4vw,16.5px)}
+.cta{display:inline-flex;align-items:center;gap:9px;margin-top:28px;padding:14px 24px;
+ background:var(--paper);color:var(--void);border:1px solid var(--paper);font-size:13.5px;
+ text-decoration:none;transition:opacity .3s var(--e)}
+.cta:hover{opacity:.8}
 
 /* ══ the measure ══ */
 .measure{margin-top:clamp(40px,6vh,72px);border-top:1px solid var(--hair);padding-top:26px}
@@ -227,6 +231,7 @@ footer p b{color:var(--ash);font-weight:400}
 
   <h1>We are a long way <i>from the frontier.</i></h1>
   <p class="hlede">Zeno 1.0 is our first model. It scores 1.5 on the Artificial Analysis Intelligence Index. The leading model scores 53.0. We publish every result we measure, including the ones below.</p>
+  <a class="cta" href="zeno-app.html" target="_blank" rel="noopener">Try Zeno →</a>
 
   <div class="measure">
     <div class="mhead">
