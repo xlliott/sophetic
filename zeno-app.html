@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zeno — Sophetic</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="robots" content="noindex">
 <style>
 @font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;
@@ -39,11 +40,6 @@ button{font:inherit}
 .sb .brand b{font-family:"Instrument Serif",serif;font-weight:400;font-size:19px}
 .newchat{margin:0 14px 16px;padding:10px 12px;border:1px solid var(--hair);
  display:flex;align-items:center;gap:9px;font-size:13px;color:var(--paper);cursor:default}
-.sbl{padding:0 18px 8px;font-size:10.5px;color:var(--dust);letter-spacing:.04em}
-.hist{flex:1;overflow-y:auto}
-.hist div{padding:8px 18px;font-size:12.5px;color:var(--ash);white-space:nowrap;
- overflow:hidden;text-overflow:ellipsis}
-.hist div.cur{background:#111113;color:var(--paper);box-shadow:inset 2px 0 0 var(--paper)}
 .sbfoot{border-top:1px solid var(--hair);margin-top:auto;padding:14px 18px 2px;
  display:flex;align-items:center;gap:9px;font-size:12px;color:var(--ash)}
 .av{width:22px;height:22px;border:1px solid var(--hair);display:grid;place-items:center;
@@ -107,8 +103,6 @@ button{font:inherit}
       </g></svg><b>Sophetic</b>
     </a>
     <div class="newchat">+ New chat</div>
-    <div class="sbl">Recent</div>
-    <div class="hist" id="hist"></div>
     <div class="sbfoot"><span class="av">Y</span> Sophetic Free</div>
   </aside>
 
@@ -136,7 +130,6 @@ button{font:inherit}
 
 <script>
 const $=id=>document.getElementById(id);
-const HIST=['Checking a decision','Reviewing the Document','Terminal-Bench trace, run 14','Draft: responsible scaling','Is 27.1% good','Naming conventions','Explaining Units to a customer','Kiln, questions about'];
 const REPLIES=[
   'We are experiencing high demand and cannot respond right now.',
   'Zeno is unavailable. Demand exceeded capacity a few minutes ago.',
@@ -144,13 +137,6 @@ const REPLIES=[
   'The Stoa is at capacity. Try again shortly.'
 ];
 let mistakes=8;
-
-const h=$('hist');
-HIST.forEach((t,i)=>{
-  const d=document.createElement('div');
-  d.textContent=t; if(i===0) d.className='cur';
-  h.appendChild(d);
-});
 
 const thread=$('thread'), input=$('input'), send=$('send'), mc=$('mc');
 let empty=$('emptystate');
