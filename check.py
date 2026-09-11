@@ -325,6 +325,29 @@ def check_structure():
         ok("structure", f"{len(pages)} pages, {sections} sections, no navigation")
 
 
+def check_fonts():
+    """Font files must exist, and must be the Latin subsets, not the originals."""
+    LIMIT = 20 * 1024
+    referenced = set()
+    for src in (SITE, APP):
+        referenced |= set(re.findall(r'url\("(/assets/fonts/[^"]+)"\)', src))
+    for ref in sorted(referenced):
+        if not (ROOT / ref.lstrip("/")).exists():
+            fail("fonts", f"{ref} is declared in an @font-face but the file is missing")
+    for path in sorted(ROOT.glob("assets/fonts/*.woff2")):
+        size = path.stat().st_size
+        if size > LIMIT:
+            fail("fonts", f"{path.name} is {size // 1024}KB; subset it to Latin (see README)")
+    # every preloaded file must actually be used by an @font-face on that page
+    for name, markup in (("index.html", SITE), ("zeno-app.html", APP)):
+        for href in re.findall(r'rel="preload" href="([^"]+)"', markup):
+            if f'url("{href}")' not in markup:
+                fail("fonts", f"{name} preloads {href}, which it never uses in an @font-face")
+    if not any(c for c, _ in FAIL if c == "fonts"):
+        total = sum(p.stat().st_size for p in ROOT.glob("assets/fonts/*.woff2"))
+        ok("fonts", f"{len(referenced)} referenced, all subset, {total // 1024}KB total")
+
+
 def check_readme():
     readme = read("README.md")
     for name in ("index.html", "zeno-app.html", "favicon.svg", "CLAUDE.md"):
@@ -341,7 +364,8 @@ def check_readme():
 
 def main():
     for check in (check_tokens, check_faces, check_results, check_gap,
-                  check_footer, check_voice, check_structure, check_readme):
+                  check_footer, check_voice, check_structure, check_fonts,
+                  check_readme):
         check()
 
     verbose = "-v" in sys.argv or "--verbose" in sys.argv

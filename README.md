@@ -36,6 +36,30 @@ python3 -m http.server 8000
 `index.html?run` walks the hero's dichotomy widget through all eight generations hands-free,
 for screen capture. Any click cancels it.
 
+## Fonts
+
+Both faces are self-hosted in `assets/fonts/`, subset to Latin plus punctuation and arrows.
+Do not load them from a CDN, and do not add a third face.
+
+If you ever replace a font file, subset the new one before committing it — `check.py` fails on
+any face over 20KB, which is roughly what an unsubset file weighs:
+
+```sh
+pip install fonttools brotli
+pyftsubset original.woff2 --output-file=assets/fonts/Name.woff2 --flavor=woff2 \
+  --unicodes='U+0000-00FF,U+0100-017F,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2190-2193,U+2212,U+2215,U+FEFF,U+FFFD' \
+  --layout-features='kern,liga,clig,calt,tnum,onum,frac' --no-hinting --desubroutinize
+```
+
+`tnum` must stay in the feature list: the numeric columns depend on tabular figures. The arrow
+range covers the CTA's → and the composer's ↑, both of which render in Space Grotesk —
+Instrument Serif has no arrows and never did.
+
+Each page preloads only the faces its first screen needs: the two Instrument Serif faces and
+Space Grotesk Light on the home page, Instrument Serif and Space Grotesk Light on the app.
+The remaining weights load normally. `check.py` rejects a preload for a face the page does not
+declare.
+
 ## Deploying
 
 Push. The repo is served as-is from its root — there is no build output and no CI.
