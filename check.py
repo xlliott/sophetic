@@ -295,9 +295,20 @@ def check_footer():
         ok("parody footer", "present on both pages, wording matching CLAUDE.md")
 
 
+def script_copy(markup):
+    """Prose held in script string literals — the app's replies live there."""
+    out = []
+    for block in re.findall(r"<script\b[^>]*>(.*?)</script>", markup, re.S):
+        for lit in re.findall(r"'([^'\n]*)'|\"([^\"\n]*)\"", block):
+            text = lit[0] or lit[1]
+            if " " in text:  # a sentence, not an identifier or a selector
+                out.append(text)
+    return out
+
+
 def check_voice():
     for name, markup in PAGES.items():
-        text = prose(markup)
+        text = prose(markup) + " " + " ".join(script_copy(markup))
         if "!" in text:
             bad = re.findall(r"[^.]{0,40}!", text)[:3]
             fail("voice", f"{name} contains an exclamation point: {bad}")
