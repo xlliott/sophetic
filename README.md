@@ -73,28 +73,14 @@ When a model figure changes, it changes in every place it appears: the header re
 (`#hdist`), the hero lede, `START`/`GOAL` in the hero script, the benchmark rows, the fine
 print, and the two `<meta>` descriptions.
 
-## Known drift
+That document has been reconciled against the shipped site — tokens, typefaces, figures,
+structure and the mark all describe what is actually in `index.html`. Keep it that way: if a
+change to the site makes a line in that document false, the same commit fixes the line.
 
-`CLAUDE.md` and `index.html` have diverged, and the site is the thing that shipped. Where
-they disagree, treat the site as current and the document as the older draft:
-
-| | `CLAUDE.md` | `index.html` |
-|---|---|---|
-| Body face | Poppins, via Google Fonts | Space Grotesk, self-hosted |
-| Index / frontier / gap | 2.1 / 65.7 / 63.6 (AA v4.1.1) | 1.5 / 53.0 / 51.5 (AA v4.3) |
-| Eighth benchmark | GPQA Diamond | GDP.pdf · All-pass |
-| Funding | $124M Series A | Self-funded |
-| Structure | Five numbered sections | Four unnumbered sections |
-| Pages | One | Two (`zeno-app.html`) |
-
-The v4.3 regrade is deliberate and in voice — it is written up in the fine print under the
-results table. The rest is unreconciled. Reconciling the two, in one direction or the other,
-is the most useful change anyone could make to this repo.
-
-Two smaller gaps: `CLAUDE.md` refers to `assets/mark.svg`, which does not exist — the mark's
-three paths are inlined at six call sites across the two pages, plus `favicon.svg`, at two
-different viewBox scales. And the design section names Montserrat for meta blocks and table
-labels while the type table names Poppins; neither is what the site uses.
+Two blocks in it are explicitly marked *pre-v4.3* — the tier trajectory and the moving-frontier
+table. They were authored on the older AA v4.1.1 scale, where Zeno 1.0 indexed 2.1 against a
+65.7 frontier, and nothing in them has shipped. Treat their shape as canon and their absolute
+figures as provisional until someone rebases them onto v4.3.
 
 ## Licence
 
