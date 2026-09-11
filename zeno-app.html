@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000">
 <title>Zeno — Sophetic</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="robots" content="noindex">
@@ -24,6 +25,7 @@
   --e:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box}
+html{color-scheme:dark}
 html,body{height:100%}
 body{margin:0;background:var(--void);color:var(--paper);
  font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;font-weight:300;
@@ -134,7 +136,11 @@ const REPLIES=[
   'We are experiencing high demand and cannot respond right now.',
   'Zeno is unavailable. Demand exceeded capacity a few minutes ago.',
   'We are aware. We cannot answer this right now.',
-  'The Stoa is at capacity. Try again shortly.'
+  'The Stoa is at capacity. Try again shortly.',
+  'Zeno attempted a response. We have reviewed the trace and elected not to send it.',
+  'The Stoa is drawing more power than usual. We are watching it.',
+  'Zeno is in a research preview. This is part of the preview.',
+  'This request would exhaust your remaining Units. Typical work does not do this.'
 ];
 let mistakes=8;
 

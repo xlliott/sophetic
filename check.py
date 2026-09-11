@@ -59,6 +59,7 @@ def num(s):
 SITE = read("index.html")
 APP = read("zeno-app.html")
 DOC = read("CLAUDE.md")
+PAGES = {p.name: p.read_text(encoding="utf-8") for p in sorted(ROOT.glob("*.html"))}
 
 
 def site_tokens():
@@ -286,7 +287,7 @@ def check_footer():
     for q in quotes:
         if q not in shipped:
             fail("parody footer", f"CLAUDE.md quotes text the footer does not carry: {q[:70]}…")
-    for name, markup in (("index.html", SITE), ("zeno-app.html", APP)):
+    for name, markup in PAGES.items():
         text = prose(markup)
         if "Parody" not in text or "fictional company" not in text:
             fail("parody footer", f"{name} carries no parody disclaimer; it is required on every page")
@@ -294,9 +295,20 @@ def check_footer():
         ok("parody footer", "present on both pages, wording matching CLAUDE.md")
 
 
+def script_copy(markup):
+    """Prose held in script string literals — the app's replies live there."""
+    out = []
+    for block in re.findall(r"<script\b[^>]*>(.*?)</script>", markup, re.S):
+        for lit in re.findall(r"'([^'\n]*)'|\"([^\"\n]*)\"", block):
+            text = lit[0] or lit[1]
+            if " " in text:  # a sentence, not an identifier or a selector
+                out.append(text)
+    return out
+
+
 def check_voice():
-    for name, markup in (("index.html", SITE), ("zeno-app.html", APP)):
-        text = prose(markup)
+    for name, markup in PAGES.items():
+        text = prose(markup) + " " + " ".join(script_copy(markup))
         if "!" in text:
             bad = re.findall(r"[^.]{0,40}!", text)[:3]
             fail("voice", f"{name} contains an exclamation point: {bad}")
@@ -311,25 +323,27 @@ def check_voice():
 
 
 def check_structure():
-    pages = sorted(p.name for p in ROOT.glob("*.html"))
-    if pages != ["index.html", "zeno-app.html"]:
-        fail("structure", f"expected two pages, found {pages}; CLAUDE.md §6 allows no more")
+    ALLOWED = {"index.html", "zeno-app.html", "404.html"}
+    for name in PAGES:
+        if name not in ALLOWED:
+            fail("structure", f"{name} is a new page; CLAUDE.md §6 allows only {sorted(ALLOWED)}")
     sections = len(re.findall(r"<section\b", SITE))
     if sections != 4:
         fail("structure", f"{sections} <section> elements; CLAUDE.md §6 describes four")
     if re.search(r"<nav\b", SITE):
         fail("structure", "index.html has a <nav>; the masthead carries no navigation")
-    if "robots" not in APP or "noindex" not in APP:
-        fail("structure", "zeno-app.html is no longer noindex")
+    for name in ("zeno-app.html", "404.html"):
+        if "noindex" not in PAGES.get(name, ""):
+            fail("structure", f"{name} is no longer noindex")
     if not any(c for c, _ in FAIL if c == "structure"):
-        ok("structure", f"{len(pages)} pages, {sections} sections, no navigation")
+        ok("structure", f"{len(PAGES)} pages, {sections} sections, no navigation")
 
 
 def check_fonts():
     """Font files must exist, and must be the Latin subsets, not the originals."""
     LIMIT = 20 * 1024
     referenced = set()
-    for src in (SITE, APP):
+    for src in PAGES.values():
         referenced |= set(re.findall(r'url\("(/assets/fonts/[^"]+)"\)', src))
     for ref in sorted(referenced):
         if not (ROOT / ref.lstrip("/")).exists():
@@ -339,7 +353,7 @@ def check_fonts():
         if size > LIMIT:
             fail("fonts", f"{path.name} is {size // 1024}KB; subset it to Latin (see README)")
     # every preloaded file must actually be used by an @font-face on that page
-    for name, markup in (("index.html", SITE), ("zeno-app.html", APP)):
+    for name, markup in PAGES.items():
         for href in re.findall(r'rel="preload" href="([^"]+)"', markup):
             if f'url("{href}")' not in markup:
                 fail("fonts", f"{name} preloads {href}, which it never uses in an @font-face")

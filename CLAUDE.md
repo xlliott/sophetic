@@ -252,6 +252,8 @@ every serif element so no browser fakes a weight.
 - **Gauges.** `.gauge` — a 1px track, a `--dust` rule showing the best reported result, and a 9px `--paper` block showing Zeno, width driven by `data-w` and animated in on scroll. Hidden below 900px.
 - **Cell grids.** `.cells` and `.spec` — bordered grids, label in `--dust` at 11.5px, value in Instrument Serif, gloss in `--ash`. Collapse to one column below 900px.
 - **Reveal.** `[data-rv]` — 16px rise and fade on scroll via IntersectionObserver, unobserved after firing. Disabled under `prefers-reduced-motion`.
+- **Dark chrome.** Every page sets `color-scheme:dark` and `<meta name="theme-color" content="#000000">` so scrollbars, form controls and the mobile browser chrome match the page instead of flashing white against it.
+- **Anchors clear the masthead.** `[id]{scroll-margin-top:calc(64px + 18px)}` — the masthead is fixed and 64px, so a scrolled-to element would otherwise sit under it.
 - Generous whitespace. No shadows. No gradients. No border radius anywhere.
 
 ### Motion
@@ -269,7 +271,7 @@ existing path data verbatim. Do not redraw, recolour, rotate, or add effects.**
 
 ## 6. SITE ARCHITECTURE
 
-**One page, long scroll, plus one mock app.** No tabs, no routing, and **no navigation links**
+**One page, long scroll, plus one mock app and an error page.** No tabs, no routing, and **no navigation links**
 — the masthead carries the mark, the wordmark, a live distance readout and a status note, and
 nothing else. Four unnumbered sections, reached by scrolling.
 
@@ -299,8 +301,14 @@ Kiln, the Loom, the Assay, and status.
 model pill, thread, composer. Every reply is a capacity apology drawn at random. The footer
 counter reads "Zeno has made 8 mistakes in this conversation" before you have sent anything.
 
+**`404.html`** — the error page Cloudflare Pages serves for an unknown path. `noindex`. The
+masthead, the column grid, the grain, a `404` in Instrument Serif, one line in voice, and a
+link back. It states, with total confidence, that it has checked twice — the joke is the
+institutional certainty, not the error.
+
 If asked to add a page, don't. Add a section to the single page. Do not add navigation links.
-`zeno-app.html` is the one exception and it is not a precedent.
+`zeno-app.html` and `404.html` are the only exceptions and they are not a precedent;
+`check.py` fails on a third.
 
 **Footer, required on every page:**
 > **Parody. Sophetic is a fictional company.** It has no products, no funding, no customers and no employees, which distinguishes it from its subject matter in one respect.
