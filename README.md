@@ -58,6 +58,24 @@ result. Never attribute a fabricated score to a named real model.
 
 **Footer** — the disclaimer. Required on every page.
 
+## Checking
+
+`check.py` verifies that the documentation still describes the site. No dependencies:
+
+```sh
+python3 check.py        # report drift, exit 1 if any
+python3 check.py -v     # also list what passed
+```
+
+It compares the figures, tokens, typefaces and footer wording that `CLAUDE.md` restates
+against their source in `index.html`; checks `index.html` against itself where one number
+appears in several places (the gap figure appears in ten); and enforces the voice rules that
+can be mechanised. It runs in CI on every push, and as a Claude Code Stop hook so an agent
+session that edits the site is told before it reports success.
+
+What it cannot check is intent — that the em dash in the GDP.pdf cell means "not yet run"
+rather than zero, or that a benchmark regrade is never banked as progress. Those stay prose.
+
 ## Editing
 
 `CLAUDE.md` is the authority on canon, voice and design. The short version:
