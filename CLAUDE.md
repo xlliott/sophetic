@@ -310,8 +310,12 @@ scaling.
 Kiln, the Loom, the Assay, and status.
 
 **`zeno-app.html`** — a mock chat client, `noindex`, linked from the hero CTA. Sidebar,
-model pill, thread, composer. Every reply is a capacity apology drawn at random. The footer
-counter reads "Zeno has made 8 mistakes in this conversation" before you have sent anything.
+model pill, thread, composer. Zeno never answers: the eight canned replies are drawn at
+random, half of them capacity apologies and half declining for other reasons — the trace was
+reviewed and not sent, the Stoa is drawing power, the research preview is behaving as a
+research preview, the request would exhaust your Units. Keep any new one in that shape.
+The footer reads "Zeno can make mistakes. Zeno has made 8 in this conversation" before you
+have sent anything, the counter borrowing the noun from the disclaimer in front of it.
 
 **`404.html`** — the error page Cloudflare Pages serves for an unknown path. `noindex`. The
 masthead, the column grid, the grain, a `404` in Instrument Serif, one line in voice, and a
@@ -339,9 +343,11 @@ and the `START`/`GOAL` constants if the index moved; stay consistent with §3.
 hero script, `#goallab`, the lede, and the two `<meta>` descriptions. Add a note
 congratulating them. Never editorialise.
 
-**Change any headline number** — it appears in seven places: `#hdist`, the hero lede, the
-`START`/`GOAL` constants, the results row, the fine print, `<meta name="description">` and
-`og:description`. Change all seven.
+**Change any headline number** — it appears in ten places, all of which `check.py` holds to
+each other: `#hdist`, `#score`, `#remain`, `#goallab`, both figures in the hero lede, the
+`START` and `GOAL` constants, `<meta name="description">` and `og:description`. The results
+row and the fine print carry it too, the fine print as the regrade narrative. Change all of
+them, then run `python3 check.py`, which names any you missed.
 
 **Make it look better** — more space, not more elements. If tempted to add colour, add a rule
 instead.

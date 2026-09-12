@@ -93,11 +93,13 @@ python3 check.py        # report drift, exit 1 if any
 python3 check.py -v     # also list what passed
 ```
 
-It compares the figures, tokens, typefaces and footer wording that `CLAUDE.md` restates
-against their source in `index.html`; checks `index.html` against itself where one number
-appears in several places (the gap figure appears in ten); and enforces the voice rules that
-can be mechanised. It runs in CI on every push, and as a Claude Code Stop hook so an agent
-session that edits the site is told before it reports success.
+Ten checks. It compares the figures, tokens, typefaces and footer wording that `CLAUDE.md`
+restates against their source in `index.html`; checks `index.html` against itself where one
+number appears in several places (the gap figure appears in ten); holds every page's mark
+sprite and the favicon to `assets/mark.svg`; fails an unsubset font or a preload of a face the
+page never declares; and enforces the voice rules that can be mechanised, reading the copy
+held in script literals as well as the markup. It runs in CI on every push, and as a Claude
+Code Stop hook so an agent session that edits the site is told before it reports success.
 
 What it cannot check is intent — that the em dash in the GDP.pdf cell means "not yet run"
 rather than zero, or that a benchmark regrade is never banked as progress. Those stay prose.
