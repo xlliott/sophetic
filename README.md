@@ -17,6 +17,7 @@ index.html            The site. One page, long scroll. All CSS and JS inline.
 zeno-app.html         A mock chat client for Zeno. noindex. Linked from the hero CTA.
 404.html              Error page, served by Cloudflare Pages for unknown paths. noindex.
 favicon.svg           The mark, 700×700, black plate.
+assets/mark.svg       The mark. Canonical artwork; every other copy derives from it.
 assets/og.png         Open Graph card, 1200×630.
 assets/header.png     X header, 1500×500.
 assets/avatar.png     X avatar, 400×400.

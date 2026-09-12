@@ -292,7 +292,7 @@ def check_footer():
         if "Parody" not in text or "fictional company" not in text:
             fail("parody footer", f"{name} carries no parody disclaimer; it is required on every page")
     if not any(c for c, _ in FAIL if c == "parody footer"):
-        ok("parody footer", "present on both pages, wording matching CLAUDE.md")
+        ok("parody footer", f"present on all {len(PAGES)} pages, wording matching CLAUDE.md")
 
 
 def script_copy(markup):
@@ -362,6 +362,54 @@ def check_fonts():
         ok("fonts", f"{len(referenced)} referenced, all subset, {total // 1024}KB total")
 
 
+def path_ops(d):
+    """Parse an absolute M/L/V/H/Z path into (command, numbers) pairs."""
+    return [(c, [float(n) for n in re.findall(r"-?\d+(?:\.\d+)?", args)])
+            for c, args in re.findall(r"([MLVHZ])([^MLVHZ]*)", d)]
+
+
+def shifted(ops, dx, dy):
+    out = []
+    for cmd, nums in ops:
+        if cmd in "ML":
+            nums = [n + (dx if i % 2 == 0 else dy) for i, n in enumerate(nums)]
+        elif cmd == "V":
+            nums = [n + dy for n in nums]
+        elif cmd == "H":
+            nums = [n + dx for n in nums]
+        out.append((cmd, [round(n, 3) for n in nums]))
+    return out
+
+
+def check_mark():
+    """One mark, drawn once. Every page and the favicon must carry that artwork."""
+    canon = re.findall(r'<path d="([^"]+)"', read("assets/mark.svg"))
+    if len(canon) != 3:
+        fail("mark", f"assets/mark.svg has {len(canon)} paths; the mark is three parallelograms")
+        return
+    for name, markup in PAGES.items():
+        sym = re.search(r'<symbol id="mark"[^>]*>(.*?)</symbol>', markup, re.S)
+        if not sym:
+            fail("mark", f"{name} has no <symbol id=\"mark\"> sprite")
+            continue
+        if re.findall(r'<path d="([^"]+)"', sym.group(1)) != canon:
+            fail("mark", f"{name}: the sprite has drifted from assets/mark.svg")
+        loose = markup.replace(sym.group(0), "").count(canon[0])
+        if loose:
+            fail("mark", f"{name}: {loose} inline copies of the mark outside the sprite; use <use href=\"#mark\">")
+        if '<use href="#mark"/>' not in markup:
+            fail("mark", f"{name} defines the sprite but never references it")
+    # the favicon is the same artwork on a 700x700 plate, offset by (220, 115)
+    fav = re.findall(r'<path d="([^"]+)"', read("favicon.svg"))
+    want = [shifted(path_ops(d), 220, 115) for d in canon]
+    got = [shifted(path_ops(d), 0, 0) for d in fav]
+    if got != want:
+        fail("mark", "favicon.svg is not assets/mark.svg offset by (220, 115); it has been redrawn")
+    if not any(c for c, _ in FAIL if c == "mark"):
+        uses = sum(m.count('<use href="#mark"/>') for m in PAGES.values())
+        ok("mark", f"one definition per page, {uses} references, favicon matching")
+
+
 def check_readme():
     readme = read("README.md")
     for name in ("index.html", "zeno-app.html", "favicon.svg", "CLAUDE.md"):
@@ -378,7 +426,7 @@ def check_readme():
 
 def main():
     for check in (check_tokens, check_faces, check_results, check_gap,
-                  check_footer, check_voice, check_structure, check_fonts,
+                  check_footer, check_voice, check_structure, check_fonts, check_mark,
                   check_readme):
         check()
 
