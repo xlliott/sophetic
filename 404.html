@@ -24,6 +24,7 @@
   --gut:clamp(18px,3.4vw,44px);
 }
 *{box-sizing:border-box}
+.sprite{position:absolute;width:0;height:0}
 html{-webkit-text-size-adjust:100%;color-scheme:dark;overflow-x:clip}
 body{
   margin:0;background:var(--void);color:var(--paper);
@@ -69,11 +70,12 @@ footer p b{color:var(--ash);font-weight:400}
 </style>
 </head>
 <body>
+<svg class="sprite" aria-hidden="true"><symbol id="mark" viewBox="0 0 260 470"><path d="M0 354.898L130 295V410.102L0 470V354.898Z"/><path d="M130 59.898L260 0V115.102L130 175L130 59.898Z"/><path d="M260 237.829L0 117V232.171L260 353V237.829Z"/></symbol></svg>
 
 <div class="rules" aria-hidden="true"><div><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
 
 <header><div class="frame">
-  <a class="brand" href="/"><svg width="17" height="22" viewBox="0 0 260 470" aria-hidden="true"><g fill="#F4F4F1"><path d="M0 354.898L130 295V410.102L0 470V354.898Z"/><path d="M130 59.898L260 0V115.102L130 175L130 59.898Z"/><path d="M260 237.829L0 117V232.171L260 353V237.829Z"/></g></svg><b>Sophetic</b></a>
+  <a class="brand" href="/"><svg width="17" height="22" viewBox="0 0 260 470" aria-hidden="true" fill="#F4F4F1"><use href="#mark"/></svg><b>Sophetic</b></a>
 </div></header>
 
 <main><div class="frame">

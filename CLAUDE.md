@@ -262,10 +262,22 @@ kills every transition and animation and shows all revealed content. Anything ne
 that block.
 
 ### The mark
-Three parallelograms with vertical end-caps, alternating slant, forming an S. It ships two
-ways: `favicon.svg` at a 700×700 viewBox on a black plate, and inline `<svg>` at a 260×470
-viewBox at six call sites across the two pages. There is no `assets/mark.svg`. **Use the
-existing path data verbatim. Do not redraw, recolour, rotate, or add effects.**
+Three parallelograms with vertical end-caps, alternating slant, forming an S.
+
+**`assets/mark.svg` is the artwork.** Three paths on a 260×470 viewBox, `fill="currentColor"`.
+Every other appearance derives from it:
+
+- Each page carries one hidden `<symbol id="mark">` sprite holding those three paths, and every
+  call site is `<svg width … height … viewBox="0 0 260 470" fill="…"><use href="#mark"/></svg>`.
+  Colour is set by the `fill` attribute at the call site, so the same sprite serves the light
+  mark and the dark one on Zeno's avatar.
+- `favicon.svg` is the same three paths on a 700×700 black plate, offset by (220, 115).
+
+External `<use href="file.svg#id")` is not an option — Safari does not support it and there is
+no build step — so one sprite per page is the floor. `check.py` holds every sprite and the
+favicon to `assets/mark.svg` and fails on a loose inline copy.
+
+**Use the existing path data verbatim. Do not redraw, recolour, rotate, or add effects.**
 
 ---
 
