@@ -317,6 +317,23 @@ research preview, the request would exhaust your Units. Keep any new one in that
 The footer reads "Zeno can make mistakes. Zeno has made 8 in this conversation" before you
 have sent anything, the counter borrowing the noun from the disclaimer in front of it.
 
+The chrome behaves like a product's. **New chat** empties the thread and returns the counter
+to its baseline of 8. The thread, the counter and the chosen model persist in `localStorage`
+under `sophetic.zeno.thread.v1`, so a reload resumes the conversation and the counter climbs
+across visits; every read and write is wrapped, because a browser may refuse storage. While
+Zeno is thinking the send button becomes **Stop**, which cancels and answers *"Cancelled. It
+was not going to answer anyway."* — the ninth line, and the only one not drawn at random. Each
+Zeno message carries a quiet **Copy**. The model pill is a real menu with the two shipped
+configurations in it and nothing else; switching changes the label and changes no behaviour.
+The sidebar holds three greyed, unopenable *Untitled* chats and a greyed, unclickable upgrade
+line at $200/month. Cancelling counts as a mistake. So does every reply.
+
+`manifest.json` makes the app installable to a home screen — standalone, black, the mark on
+its plate as the icon. Its three PNG icons derive from `assets/mark.svg`; do not redraw them.
+The page is `viewport-fit=cover` and pads the sidebar, top bar and composer with
+`env(safe-area-inset-*)`, and the composer textarea stays at 16px so iOS does not zoom on
+focus.
+
 **`404.html`** — the error page Cloudflare Pages serves for an unknown path. `noindex`. The
 masthead, the column grid, the grain, a `404` in Instrument Serif, one line in voice, and a
 link back. It states, with total confidence, that it has checked twice — the joke is the

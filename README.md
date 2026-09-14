@@ -17,10 +17,14 @@ index.html            The site. One page, long scroll. All CSS and JS inline.
 zeno-app.html         A mock chat client for Zeno. noindex. Linked from the hero CTA.
 404.html              Error page, served by Cloudflare Pages for unknown paths. noindex.
 favicon.svg           The mark, 700×700, black plate.
+manifest.json         Web app manifest. The mock app is installable to a home screen.
 assets/mark.svg       The mark. Canonical artwork; every other copy derives from it.
 assets/og.png         Open Graph card, 1200×630.
 assets/header.png     X header, 1500×500.
 assets/avatar.png     X avatar, 400×400.
+assets/icon-192.png   App icon, 192×192. The mark on the same black plate as the favicon.
+assets/icon-512.png   App icon, 512×512.
+assets/apple-touch-icon.png  Home screen icon for iOS, 180×180.
 assets/fonts/*.woff2  Self-hosted Instrument Serif and Space Grotesk.
 CLAUDE.md             Canon, voice and design system. Read before editing anything.
 ```
@@ -61,6 +65,10 @@ Each page preloads only the faces its first screen needs: the two Instrument Ser
 Space Grotesk Light on the home page, Instrument Serif and Space Grotesk Light on the app.
 The remaining weights load normally. `check.py` rejects a preload for a face the page does not
 declare.
+
+The three app icons are `assets/mark.svg` rasterised onto the favicon's plate — a 700×700
+square with the mark offset by (220, 115) — so they carry the same artwork as everything else.
+Regenerate them from `assets/mark.svg` rather than redrawing them.
 
 ## Deploying
 
