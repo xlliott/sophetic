@@ -12,11 +12,17 @@
 <meta property="og:title" content="Sophetic">
 <meta property="og:description" content="34 people in San Francisco. Zeno 1.0 is 51.5 points behind the frontier. We publish every result we measure. Parody.">
 <meta property="og:image" content="https://sophetic.pages.dev/assets/og.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The Sophetic mark and wordmark on black.">
-<meta property="og:url" content="https://sophetic.pages.dev">
+<meta property="og:url" content="https://sophetic.pages.dev/">
+<link rel="canonical" href="https://sophetic.pages.dev/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sophetic">
+<meta name="twitter:description" content="34 people in San Francisco. Zeno 1.0 is 51.5 points behind the frontier. We publish every result we measure. Parody.">
+<meta name="twitter:image" content="https://sophetic.pages.dev/assets/og.png">
+<meta name="twitter:image:alt" content="The Sophetic mark and wordmark on black.">
 <link rel="preload" href="/assets/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/InstrumentSerif-Italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/SpaceGrotesk-Light.woff2" as="font" type="font/woff2" crossorigin>
@@ -215,13 +221,22 @@ footer p b{color:var(--ash);font-weight:400}
   #step{flex:1 1 auto;min-width:0}
   .controls p{padding:16px 0;flex:1 1 100%;min-height:0}
 }
+.xy{position:fixed;top:0;left:0;z-index:150;pointer-events:none;user-select:none;
+ font-size:10.5px;font-weight:300;color:var(--ash);letter-spacing:.07em;white-space:nowrap;
+ background:var(--void);border:1px solid var(--hair);padding:3.5px 7px;
+ font-variant-numeric:tabular-nums;opacity:0;transform:translate3d(-200px,-200px,0);
+ transition:opacity .4s var(--e)}
+.xy.on{opacity:1}
+@media(hover:none),(pointer:coarse){.xy{display:none}}
 @media(prefers-reduced-motion:reduce){
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
   [data-rv]{opacity:1;transform:none}
+  .xy{display:none}
 }
 </style>
 </head>
 <body>
+<div class="xy" id="xy" aria-hidden="true"></div>
 <svg class="sprite" aria-hidden="true"><symbol id="mark" viewBox="0 0 260 470"><path d="M0 354.898L130 295V410.102L0 470V354.898Z"/><path d="M130 59.898L260 0V115.102L130 175L130 59.898Z"/><path d="M260 237.829L0 117V232.171L260 353V237.829Z"/></symbol></svg>
 
 <div class="rules" aria-hidden="true"><div><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
@@ -422,6 +437,32 @@ footer p b{color:var(--ash);font-weight:400}
     bio.unobserve(e.target);
   }),{threshold:.2});
   bio.observe($('bench'));
+})();
+
+/* cursor readout - viewport position as a percentage, mouse only */
+(function(){
+  const el=document.getElementById('xy');
+  if(!el||!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  let x=0,y=0,queued=false;
+  function draw(){
+    queued=false;
+    const w=innerWidth,h=innerHeight;
+    el.textContent='[X '+(x/w*100).toFixed(1)+', Y '+(y/h*100).toFixed(1)+']';
+    let lx=x+17, ly=y+17;
+    if(lx+el.offsetWidth>w-10) lx=x-el.offsetWidth-17;
+    if(ly+el.offsetHeight>h-10) ly=y-el.offsetHeight-17;
+    el.style.transform='translate3d('+lx+'px,'+ly+'px,0)';
+    el.classList.add('on');
+  }
+  addEventListener('pointermove',e=>{
+    if(e.pointerType&&e.pointerType!=='mouse') return;
+    x=e.clientX; y=e.clientY;
+    if(!queued){ queued=true; requestAnimationFrame(draw); }
+  },{passive:true});
+  addEventListener('pointerdown',e=>{ if(e.pointerType==='touch') el.classList.remove('on'); },{passive:true});
+  document.addEventListener('mouseleave',()=>el.classList.remove('on'));
+  addEventListener('blur',()=>el.classList.remove('on'));
 })();
 </script>
 </body>
