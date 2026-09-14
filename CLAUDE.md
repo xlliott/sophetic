@@ -343,6 +343,11 @@ If asked to add a page, don't. Add a section to the single page. Do not add navi
 `zeno-app.html` and `404.html` are the only exceptions and they are not a precedent;
 `check.py` fails on a third.
 
+The footer also carries **one outbound link**, to the X account at `@sophetic`, set one step
+brighter than the disclaimer beneath it. It is the only link off the site. The masthead still
+carries none, and this is not a precedent for navigation. On `zeno-app.html` the same link
+sits in the composer's footer line, beside the disclaimer, since that page has no `<footer>`.
+
 **Footer, required on every page:**
 > **Parody. Sophetic is a fictional company.** It has no products, no funding, no customers and no employees, which distinguishes it from its subject matter in one respect.
 

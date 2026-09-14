@@ -190,6 +190,9 @@ footer .pad{padding-top:clamp(48px,7vh,86px);padding-bottom:clamp(52px,8vh,96px)
 .fsig{display:flex;align-items:center;gap:10px;margin-bottom:24px}
 .fsig b{font-family:"Instrument Serif",serif;font-weight:400;font-size:21px}
 footer p{margin:0 0 11px;color:var(--dust);font-size:12.5px;max-width:80ch}
+.fx{margin:0 0 22px;color:var(--ash);font-size:12.5px}
+.fx a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .3s var(--e)}
+.fx a:hover,.fx a:focus-visible{border-bottom-color:var(--ash)}
 footer p b{color:var(--ash);font-weight:400}
 
 /* ══ reveal ══ */
@@ -335,6 +338,7 @@ footer p b{color:var(--ash);font-weight:400}
 
 <footer><div class="frame pad">
   <div class="fsig"><svg width="15" height="20" viewBox="0 0 260 470" aria-hidden="true" fill="#F4F4F1"><use href="#mark"/></svg><b>Sophetic</b></div>
+  <p class="fx"><a href="https://x.com/sophetic" target="_blank" rel="me noopener" aria-label="Sophetic on X, opens in a new tab">@sophetic on X</a> — results as we publish them</p>
   <p><b>Parody. Sophetic is a fictional company.</b> It has no products, no funding, no customers and no employees, which distinguishes it from its subject matter in one respect.</p>
   <p>Not affiliated with any real laboratory. Every model, benchmark result, commitment, investor and figure shown here is invented. The benchmark names are real; the scores attributed to Zeno are not.</p>
 </div></footer>
