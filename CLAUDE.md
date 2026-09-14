@@ -251,6 +251,10 @@ every serif element so no browser fakes a weight.
 - **Hairline division.** Sections divide with `1px solid var(--hair)`; a table or grid opens with `1px solid var(--dust)`, one step brighter. That contrast step is the whole hierarchy.
 - **Gauges.** `.gauge` — a 1px track, a `--dust` rule showing the best reported result, and a 9px `--paper` block showing Zeno, width driven by `data-w` and animated in on scroll. Hidden below 900px.
 - **Cell grids.** `.cells` and `.spec` — bordered grids, label in `--dust` at 11.5px, value in Instrument Serif, gloss in `--ash`. Collapse to one column below 900px.
+- **Cursor readout.** `.xy` — a hairline chip that follows the cursor on `index.html`, showing
+  viewport position as a percentage in tabular figures: `[X 50.0, Y 50.0]`. Mouse only: hidden
+  on coarse pointers, under `prefers-reduced-motion`, and until the first movement. It is an
+  instrument, not a toy — never animate it, never let it read out anything but position.
 - **Reveal.** `[data-rv]` — 16px rise and fade on scroll via IntersectionObserver, unobserved after firing. Disabled under `prefers-reduced-motion`.
 - **Dark chrome.** Every page sets `color-scheme:dark` and `<meta name="theme-color" content="#000000">` so scrollbars, form controls and the mobile browser chrome match the page instead of flashing white against it.
 - **Anchors clear the masthead.** `[id]{scroll-margin-top:calc(64px + 18px)}` — the masthead is fixed and 64px, so a scrolled-to element would otherwise sit under it.
