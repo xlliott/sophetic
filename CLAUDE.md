@@ -369,9 +369,10 @@ and the `START`/`GOAL` constants if the index moved; stay consistent with §3.
 hero script, `#goallab`, the lede, and the two `<meta>` descriptions. Add a note
 congratulating them. Never editorialise.
 
-**Change any headline number** — it appears in ten places, all of which `check.py` holds to
+**Change any headline number** — it appears in eleven places, all of which `check.py` holds to
 each other: `#hdist`, `#score`, `#remain`, `#goallab`, both figures in the hero lede, the
-`START` and `GOAL` constants, `<meta name="description">` and `og:description`. The results
+`START` and `GOAL` constants, `<meta name="description">`, `og:description` and
+`twitter:description`. None of them is computed at runtime; they are all literal text. The results
 row and the fine print carry it too, the fine print as the regrade narrative. Change all of
 them, then run `python3 check.py`, which names any you missed.
 

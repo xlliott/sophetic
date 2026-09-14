@@ -103,7 +103,7 @@ python3 check.py -v     # also list what passed
 
 Ten checks. It compares the figures, tokens, typefaces and footer wording that `CLAUDE.md`
 restates against their source in `index.html`; checks `index.html` against itself where one
-number appears in several places (the gap figure appears in ten); holds every page's mark
+number appears in several places (the gap figure appears in eleven); holds every page's mark
 sprite and the favicon to `assets/mark.svg`; fails an unsubset font or a preload of a face the
 page never declares; and enforces the voice rules that can be mechanised, reading the copy
 held in script literals as well as the markup. It runs in CI on every push, and as a Claude
@@ -125,7 +125,8 @@ rather than zero, or that a benchmark regrade is never banked as progress. Those
 
 When a model figure changes, it changes in every place it appears: the header readout
 (`#hdist`), the hero lede, `START`/`GOAL` in the hero script, the benchmark rows, the fine
-print, and the two `<meta>` descriptions.
+print, and the three `<meta>` descriptions (`description`, `og:description`,
+`twitter:description`).
 
 That document has been reconciled against the shipped site — tokens, typefaces, figures,
 structure and the mark all describe what is actually in `index.html`. Keep it that way: if a

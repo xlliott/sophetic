@@ -232,7 +232,7 @@ def check_gauge(key, row):
 
 
 def check_gap():
-    """The same three figures appear in seven places. They must agree."""
+    """The same three figures appear in eleven places. They must agree."""
     doc = doc_rows()
     index = doc.get("aa intelligence index v4.3")
     if not index:
@@ -265,6 +265,7 @@ def check_gap():
         'hero lede, frontier': (r"The leading model scores ([\d.]+)\.", goal),
         'meta description': (r'name="description" content="[^"]*?([\d.]+) points behind', gap),
         'og:description': (r'property="og:description" content="[^"]*?([\d.]+) points behind', gap),
+        'twitter:description': (r'name="twitter:description" content="[^"]*?([\d.]+) points behind', gap),
     }
     for where, (pattern, want) in places.items():
         m = re.search(pattern, SITE)
@@ -274,7 +275,7 @@ def check_gap():
             fail("headline figures", f"{where} reads {m.group(1)}, expected {want}")
 
     if not any(c for c, _ in FAIL if c == "headline figures"):
-        ok("headline figures", f"{score} against {goal}, gap {gap}, agreeing in 10 places")
+        ok("headline figures", f"{score} against {goal}, gap {gap}, agreeing in 11 places")
 
 
 def check_footer():
