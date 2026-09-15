@@ -324,10 +324,15 @@ have sent anything, the counter borrowing the noun from the disclaimer in front 
 The chrome behaves like a product's. **New chat** empties the thread and returns the counter
 to its baseline of 8. The thread, the counter and the chosen model persist in `localStorage`
 under `sophetic.zeno.thread.v1`, so a reload resumes the conversation and the counter climbs
-across visits; every read and write is wrapped, because a browser may refuse storage. While
-Zeno is thinking the send button becomes **Stop**, which cancels and answers *"Cancelled. It
-was not going to answer anyway."* — the ninth line, and the only one not drawn at random. Each
-Zeno message carries a quiet **Copy**. The model pill is a real menu with the two shipped
+across visits; every read and write is wrapped, because a browser may refuse storage. Replies
+**type themselves out** at 42 characters a second behind a block caret, not all at once;
+restored history and `prefers-reduced-motion` paint in full immediately, and **Copy** only
+appears once a line has finished. While Zeno is thinking, and while it is typing, the send
+button becomes **Stop**, which cancels and answers *"Cancelled. It was not going to answer
+anyway."* — the ninth line, and the only one not drawn at random. Stopping mid-line leaves the
+half-typed reply where it is and counts both it and the cancellation as mistakes. The cancelled
+line types out too, but cannot itself be stopped, and sending again finishes any line in
+progress rather than dropping the message. Each Zeno message carries a quiet **Copy**. The model pill is a real menu with the two shipped
 configurations in it and nothing else; switching changes the label and changes no behaviour.
 The sidebar holds three greyed, unopenable *Untitled* chats and a greyed, unclickable upgrade
 line at $200/month. Cancelling counts as a mistake. So does every reply.
