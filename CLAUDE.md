@@ -38,7 +38,7 @@ better. They will never arrive, they know this, and they continue.
 - **Sophetic**, San Francisco, CA
 - Founded 19 months ago by two researchers who have asked that their previous employers not be named. The employers have not asked this.
 - 34 people — applied research, infrastructure, and one person on policy
-- **Self-funded.** No outside capital has been raised. Zeno 1.0 was trained on the founders' own money and the published figures are what it bought.
+- **Raised a Series A.** $124M at a $900M valuation. Zeno 1.0 was trained before the round closed; the published figures are what the founders' own money bought.
 - Mission: *"A small lab that intends to reach the frontier."*
 - Tagline used on brand assets: *"Safety-focused AI research company"*
 
