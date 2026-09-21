@@ -47,13 +47,13 @@ better. They will never arrive, they know this, and they continue.
 - Named for **Zeno of Elea**, who proved that to cross a distance you must first cross half of it, and therefore never arrive. Sophetic's stated reason: *"for its associations with careful reasoning."*
 - **Format is always `Zeno [tier] [version]`** — `Zeno Elegy 4.6`. Family, tier, number. Never `Zeno 4.6 Elegy`.
 - **Tiers** (from week 5, ascending): **Limerick → Elegy → Epic → Parable**. Above Parable is **Legend** — same model as Parable without safeguards, never publicly available, no published figures.
-- At launch there are no tiers: **Zeno 1.0** and **Zeno Instant 1.0**. This is what the site currently shows.
+- At launch there are no tiers: **Zeno 1.0** and **Zeno Instant 1.0**. The site now shows the **Zeno 1.1** point release beside an unchanged **Zeno Instant 1.0**; Instant was not respun.
 - 64k context. Knowledge cutoff eight months ago. Instant runs at 290 tokens per second and "is not a smaller model in any sense we are prepared to describe."
 
 ### The Dichotomy Method — the spine of everything
 > Each Zeno generation closes half the remaining distance to the frontier.
 
-Gap at launch: **51.5 points** on the AA Intelligence Index. Under the method: 25.75, 12.88,
+Gap at launch: **51.5 points** on the AA Intelligence Index, **51.3** at Zeno 1.1. Under the method: 25.75, 12.88,
 6.44, 3.22… It never reaches zero. The hero widget on the site models exactly this, eight
 generations deep, and then declines to close it.
 
@@ -101,20 +101,43 @@ cards rather than belonging to any one company's preferred set. That is what mak
 as an emerging industry standard. **Do not add, remove or substitute benchmarks without being
 asked.**
 
-### Zeno 1.0 at launch — live, AA Intelligence Index v4.3
+### Zeno 1.0 at launch — superseded by Zeno 1.1, below
 
-| Benchmark | Measures | Zeno 1.0 | Best reported |
+Kept because the regrade narrative and the site's fine print still refer to these figures.
+
+| Benchmark | Zeno 1.0 |
+|---|---|
+| DeepSWE v1.1 | 1.4 |
+| CursorBench 3.2.0 | 1.9 |
+| Terminal-Bench 4.0 | 0.0 |
+| OSWorld 2.0 | 0.0 |
+| GDPval-AA v2 | 412 |
+| HLE-Verified | 0.9 |
+| GDP.pdf · All-pass | — |
+| **AA Intelligence Index v4.3** | **1.5** |
+
+Zeno 1.0's gap was 51.5, against a frontier of 53.0.
+
+### Zeno 1.1 — live, AA Intelligence Index v4.3
+
+| Benchmark | Measures | Zeno 1.1 | Best reported |
 |---|---|---|---|
-| DeepSWE v1.1 | Long-horizon software engineering | 1.4 | 73.8 |
-| CursorBench 3.2.0 | Agentic coding | 1.9 | 73.4 |
+| DeepSWE v1.1 | Long-horizon software engineering | 2.1 | 73.8 |
+| CursorBench 4.0 | Agentic coding | 1.6 | 51.8 |
 | Terminal-Bench 4.0 | Agentic coding | 0.0 | 58.2 |
 | OSWorld 2.0 | Agentic computer use | 0.0 | 72.6 |
-| GDPval-AA v2 | Knowledge work (Elo) | 412 | 1766 |
-| HLE-Verified | Multidisciplinary reasoning | 0.9 | 59.1 |
-| GDP.pdf · All-pass | Document-grounded work | — | 33.2 |
-| **AA Intelligence Index v4.3** | **Composite** | **1.5** | **53.0** |
+| GDPval-AA v2 | Knowledge work (Elo) | 448 | 1766 |
+| HLE-Verified | Multidisciplinary reasoning | 1.1 | 59.1 |
+| GDP.pdf · All-pass | Document-grounded work | 0.6 | 33.2 |
+| **AA Intelligence Index v4.3** | **Composite** | **1.7** | **53.0** |
 
-Gap: **51.5**. All values are percentages except GDPval-AA v2, which is an Elo score.
+Gap: **51.3**. All values are percentages except GDPval-AA v2, which is an Elo score.
+
+CursorBench moved from 3.2.0 to 4.0 this month and the frontier fell from 73.4 to 51.8 with it.
+Zeno's 1.6 on 4.0 is below its 1.9 on 3.2.0. **Different benchmark version, not a regression to
+explain away and not a result to reflate** — the site says so in the fine print.
+
+GDP.pdf carries a real figure for the first time. The em dash is gone; do not restore it.
 
 Right-hand figures are the best publicly reported result for each benchmark this month and are
 **not attributed to any single system.**
@@ -127,8 +150,9 @@ the leading model from 57.0 to 53.0. **The distance closed by 3.6 points. Sophet
 to close it and does not claim it.** This is stated in the fine print under the results table
 and is one of the better jokes on the site — keep it.
 
-GDP.pdf entered the index in September and Zeno has not been run against it. The cell shows an
-em dash, not a zero. "We will report the figure when we have one."
+GDP.pdf entered the index in September and Zeno 1.0 was never run against it — that cell showed
+an em dash, not a zero, and the site promised "we will report the figure when we have one."
+Zeno 1.1 was run against it and scores 0.6. The promise was kept; the em dash is gone.
 
 ### The trajectory — *pre-v4.3, not regraded*
 
@@ -161,8 +185,8 @@ below is on the old scale and needs rebasing.
 
 ### Three facts to handle carefully
 
-- **Every agentic score at launch is under 2%.** DeepSWE 1.4, CursorBench 1.9, Terminal-Bench and OSWorld both zero. These capabilities are correlated in reality, so they must stay correlated here — never let one agentic number drift far above the others.
-- **Terminal-Bench 4.0 and OSWorld 2.0 are both 0.0% at launch.** "Two of the eight." This is the single most quotable fact in the whole project.
+- **Every agentic score is still under 3%.** At 1.1: DeepSWE 2.1, CursorBench 1.6, Terminal-Bench and OSWorld both zero. These capabilities are correlated in reality, so they must stay correlated here — never let one agentic number drift far above the others.
+- **Terminal-Bench 4.0 and OSWorld 2.0 are both 0.0%, at 1.0 and still at 1.1.** "Two of the eight." This is the single most quotable fact in the whole project.
 - **The regrade moved the gap in Sophetic's favour and Sophetic refuses the credit.** Never let a future edit quietly bank a benchmark revision as progress.
 
 ### Pricing
@@ -292,7 +316,7 @@ favicon to `assets/mark.svg` and fails on a loose inline copy.
 nothing else. Four unnumbered sections, reached by scrolling.
 
 **Masthead** — fixed, 64px, blurred black. Mark and wordmark, a pulsing beacon with
-`Distance to frontier 51.5` (`#hdist`), and `Zeno 1.0 · research preview` right-aligned.
+`Distance to frontier 51.3` (`#hdist`), and `Zeno 1.1 · research preview` right-aligned.
 
 **Hero** — full viewport, content bottom-aligned. Kicker rail (San Francisco · 34 people ·
 Founded 19 months ago), the headline in Instrument Serif with an italic second clause, a
