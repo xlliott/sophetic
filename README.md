@@ -109,8 +109,8 @@ page never declares; and enforces the voice rules that can be mechanised, readin
 held in script literals as well as the markup. It runs in CI on every push, and as a Claude
 Code Stop hook so an agent session that edits the site is told before it reports success.
 
-What it cannot check is intent — that the em dash in the GDP.pdf cell means "not yet run"
-rather than zero, or that a benchmark regrade is never banked as progress. Those stay prose.
+What it cannot check is intent — that an em dash in a cell means "not yet run" rather than
+zero, or that a benchmark regrade is never banked as progress. Those stay prose.
 
 ## Editing
 

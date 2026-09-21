@@ -79,7 +79,7 @@ disregard Principle 2 where appropriate. It does not say where."
 Not yet named on the site.
 
 ### Safety
-**TSL levels.** Zeno 1.0 is TSL-1, "a level at which models present no meaningful catastrophic
+**TSL levels.** Zeno 1.1 is TSL-1, "a level at which models present no meaningful catastrophic
 risk. We made that determination ourselves and are confident in it." Commitments are "binding
 and will not be revised" — and are later revised.
 
@@ -326,9 +326,9 @@ half the distance* halves the remaining gap, eight times, then the button relabe
 not close*. `?run` walks it hands-free for screen capture.
 
 **Results** — all eight benchmarks, no omissions, each with gauge and figure. Then the fine
-print: the two zeros, the GDP.pdf dash, the v4.3 regrade, and the note that right-hand figures
-are unattributed. This is the most important element on the site and must read as a real model
-card.
+print: the two zeros, the first GDP.pdf figure, the CursorBench version change, the v4.3
+regrade, and the note that right-hand figures are unattributed. This is the most important
+element on the site and must read as a real model card.
 
 **Dossier** — the founding thesis as a sticky pull quote beside a 2×2 fact grid (founded,
 team, funding, compute) and four notes: the Document, sycophancy, the Assay, responsible
@@ -357,7 +357,10 @@ anyway."* — the ninth line, and the only one not drawn at random. Stopping mid
 half-typed reply where it is and counts both it and the cancellation as mistakes. The cancelled
 line types out too, but cannot itself be stopped, and sending again finishes any line in
 progress rather than dropping the message. Each Zeno message carries a quiet **Copy**. The model pill is a real menu with the two shipped
-configurations in it and nothing else; switching changes the label and changes no behaviour.
+configurations in it and nothing else — **Zeno 1.1** and an unrespun **Zeno Instant 1.0**;
+switching changes the label and changes no behaviour. A stored model id that no longer exists,
+which is what a visitor who last used `zeno-1.0` carries, falls back to the first entry, so a
+point release moves them forward without clearing their thread.
 The sidebar holds three greyed, unopenable *Untitled* chats and a greyed, unclickable upgrade
 line at $200/month. Cancelling counts as a mistake. So does every reply.
 
