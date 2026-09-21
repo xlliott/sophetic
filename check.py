@@ -125,7 +125,7 @@ def doc_tokens():
 
 
 def doc_rows():
-    sec = doc_section("### Zeno 1.0 at launch", "\n### ")
+    sec = doc_section("### Zeno 1.1 — live", "\n### ")
     rows = {}
     for line in sec.splitlines():
         if not line.startswith("|") or "---" in line:
